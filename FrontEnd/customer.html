@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Point of Sale</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/style.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="customer.html" class="nav-link">Customers</a>
+                </li>
+            </ul>
+
+
+
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fa fa-th-large"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/pos.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Point Of Sale</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/malaka.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Malaka Madushan</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class=" nav-icon  fa fa-dashboard"></i>
+                                <p>
+                                    Dashbord
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="customer.html" class="nav-link active">
+                                <!-- <i class="nav-icon fa fa-th"></i> -->
+                                <i class=" nav-icon  fa fa-fw fa-group"></i>
+                                <p>
+                                    Customers
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="items.html" class="nav-link">
+                                <!-- <i class="nav-icon fa fa-th"></i> -->
+                                <i class="nav-icon fa fa-fw fa-cart-plus"></i>
+                                <p>
+                                    Items
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="placeOrder.html" class="nav-link">
+                                <i class=" nav-icon fa fa-th"></i>
+                                <p>
+                                    Place Orders
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-fw fa-file-text-o"></i>
+                                <p>
+                                    Order Details
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Customer</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Customer Page</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">Customer Details</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+
+                                        <div style="text-align: left; width:25%">
+                                            <div>
+                                                <div class="info-box mb-3" id="newCustomer">
+                                                    <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
+
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">New Customers</span>
+                                                        <span id="customer-count" class="info-box-number"></span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div><br>
+
+                                        <div class="form-group">
+                                            <label for="InputCusID">CustomerID</label>
+                                            <input type="text" class="form-control" id="InputCusID" placeholder="Enter Customer ID">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="InputCusName">Customer Name</label>
+                                            <input type="text" class="form-control" id="InputCusName" placeholder="Enter Customer Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="InputAddress">Address</label>
+                                            <input type="text" class="form-control" id="InputAddress" placeholder="Enter Address">
+                                        </div>
+                                        <!-- <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        </div> -->
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <div style="text-align: left; width:75%">
+                                            <div>
+                                                <button type="button" class="btn btn-success" id="Save">Save</button>
+                                                <!-- <button type="button" class="btn btn-danger" id="btnDelete">Delete</button> -->
+                                            </div>
+                                        </div>
+                                        <!-- <button id="Submit" type="button" class="btn btn-success">Submit</button> -->
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Customer Details</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="tblCustomer" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Customer ID</th>
+                                                <th>Customer Name</th>
+                                                <th>Address</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1.</td>
+                                                <td>C001</td>
+                                                <td>Kasun</td>
+                                                <td>Galle</td>
+                                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2.</td>
+                                                <td>C002</td>
+                                                <td>Nuwan</td>
+                                                <td>Pandura</td>
+                                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+            <h5><i class="fa fa-gears"></i>&nbsp; Setting</h5>
+            <p>LogOut</p>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2018 2019 <a href="#">Direct Entity program</a>.</strong> All rights reserved.
+    </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+
+
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            reset();
+
+            var ajaxConfig={
+                method: "HEAD",
+                url: "http://localhost:3000/api/v1/customers",
+                async: true,
+            }
+            $.ajax(ajaxConfig).done(function (responseText,statusText,jxhr) {
+                var customerCount =jxhr.getResponseHeader("X-count");
+                $("#customer-count").text(customerCount);
+
+            }).fail(function (jxhr,statustext,error) {
+
+            });
+        });
+
+
+
+        $("#newCustomer").click(function () {
+            $("#btnSave").attr("disabled", false);
+            $("#InputCusID").attr("disabled", false);
+            $("#InputCusName").attr("disabled", false);
+            $("#InputAddress").attr("disabled", false);
+            
+
+
+        });
+
+        $("#Save").click(function () {
+
+
+            var cusId = $("#InputCusID").val().trim();
+            var cusName = $("#InputCusName").val().trim();
+            var cusAddress = $("#InputAddress").val().trim();
+            console.log($("#tblCustomer tbody tr").length);
+
+            var html = `<tr>
+                                <th>${$("#tblCustomer tbody tr").length + 1}</th>
+                                <td >${cusId}</td>
+                                <td >${cusName}</td>
+                                <td>${cusAddress}</td>
+                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
+                                
+                            </tr>`;
+
+            $("#tblCustomer tbody ").append(html);
+            $("#InputCusID").val("");
+            $("#InputCusName").val("");
+            $("#InputAddress").val("");
+
+
+
+            $("#tblCustomer .icon-delete").off("click");
+            $("#tblCustomer .icon-delete").click(function (eventData) {
+                eventData.stopPropagation();
+
+                $(this).fadeOut(500, function () {
+                    $(this).parents("tr").remove();
+
+                });
+            });
+
+
+            $("#tblCustomer tbody tr").click(function(){
+        var customerId=$(this).find("td:nth-child(2)").text();
+        var customerName=$(this).find("td:nth-child(3)").text();
+        var customerAddress=$(this).find("td:nth-child(4)").text();
+        //console.log(customerId);
+        $("#InputCusID").val(customerId);
+        $("#InputCusName").val(customerName);
+        $("#InputAddress").val(customerAddress);
+
+        
+
+    });
+        });
+
+
+
+        function reset() {
+            $("#btnSave").attr("disabled", true);
+            $("#InputCusID").attr("disabled", true);
+            $("#InputCusName").attr("disabled", true);
+            $("#InputAddress").attr("disabled", true);
+        }
+
+    </script>
+
+</body>
+
+</html>
