@@ -21,6 +21,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="dist/css/style.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+        .delete{
+            padding: 5px;
+        }
+
+        table tbody tr{
+            cursor: pointer;
+        }
+
+        table tbody tr td{
+            vertical-align: middle !important;
+        }
+
+        .selected-row{
+            background-color: rgba(19, 100, 190, 0.56) !important;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -189,15 +207,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="form-group">
                                             <label for="InputCusID">CustomerID</label>
-                                            <input type="text" class="form-control" id="InputCusID" placeholder="Enter Customer ID">
+                                            <input name="id" type="text" class="form-control" id="InputCusID" placeholder="Enter Customer ID">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputCusName">Customer Name</label>
-                                            <input type="text" class="form-control" id="InputCusName" placeholder="Enter Customer Name">
+                                            <input name="name" type="text" class="form-control" id="InputCusName" placeholder="Enter Customer Name">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputAddress">Address</label>
-                                            <input type="text" class="form-control" id="InputAddress" placeholder="Enter Address">
+                                            <input name="address" type="text" class="form-control" id="InputAddress" placeholder="Enter Address">
                                         </div>
                                         <!-- <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -209,7 +227,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-footer">
                                         <div style="text-align: left; width:75%">
                                             <div>
-                                                <button type="button" class="btn btn-success" id="Save">Save</button>
+                                                <button type="button" class="btn btn-primary" id="btnSave">Save</button>
+                                                <button type="reset" class="btn btn-success" id="Reset">Clear</button>
+
                                                 <!-- <button type="button" class="btn btn-danger" id="btnDelete">Delete</button> -->
                                             </div>
                                         </div>
@@ -228,34 +248,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="tblCustomer" class="table table-bordered">
+                                    <table id="tblCustomers" class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col style="width: 50px; text-align: center;">
+                                            <col>
+                                            <col>
+                                            <col style="width: 50px;">
+                                        </colgroup>
                                         <thead>
-                                            <tr>
-                                                <th style="width: 10px">#</th>
-                                                <th>Customer ID</th>
-                                                <th>Customer Name</th>
-                                                <th>Address</th>
-                                                <th></th>
-                                            </tr>
+                                        <tr>
+                                            <th style="text-align: center;">ID</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th style="text-align: center;">
+                                                Remove
+                                            </th>
+                                        </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.</td>
-                                                <td>C001</td>
-                                                <td>Kasun</td>
-                                                <td>Galle</td>
-                                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>2.</td>
-                                                <td>C002</td>
-                                                <td>Nuwan</td>
-                                                <td>Pandura</td>
-                                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
-                                            </tr>
-                                        </tbody>
-
+                                        <tbody></tbody>
                                     </table>
                                 </div>
 
@@ -271,10 +281,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
 
-    </div>
 
-    </div>
-    </div>
+
+
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -295,7 +304,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Default to the left -->
         <strong>Copyright &copy; 2018 2019 <a href="#">Direct Entity program</a>.</strong> All rights reserved.
     </footer>
-    </div>
+
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
@@ -305,29 +314,234 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/jquery/jquery.js"></script>
+    <script src="plugins/jQueryUI/jquery-ui.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+    <!--<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            reset();
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
 
-            var ajaxConfig={
-                method: "HEAD",
-                url: "http://localhost:3000/api/v1/customers",
-                async: true,
-            }
-            $.ajax(ajaxConfig).done(function (responseText,statusText,jxhr) {
-                var customerCount =jxhr.getResponseHeader("X-count");
-                $("#customer-count").text(customerCount);
+    <script src="plugins/fastclick/fastclick.js"></script>
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!--data table-->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap4.js"></script>
 
-            }).fail(function (jxhr,statustext,error) {
+    <!--<script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>-->
+    <script>
+        $(function () {
+            $('#tblCustomers').DataTable({
+                'paging'      : true,
+                'lengthChange': false,
+                'searching'   : true,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search Customers...",
 
+                }
             });
         });
+    </script>
+
+
+    <script>
+
+
+        $("#btnSave").click(function(){
+
+
+
+            if ($("#InputCusID").attr("disabled")){
+
+                if ($("#InputCusName").val() == ""  ){
+                    alert("plz Enter the Name");
+                    return;
+                }
+                if ($("#InputQuantityOnHand").val() == ""  ){
+                    alert("plz Enter the Address");
+                    return;
+                }
+
+                var customer = {
+                    cus_id: $("#InputCusID").val().trim(),
+                    cus_name: $("#InputCusName").val().trim(),
+                    cus_address: $("#InputAddress").val().trim()
+                };
+
+                var ajaxConfig = {
+                    method: "PUT",
+                    url: "http://localhost:3000/api/v1/customers/" +$("#InputCusID").val(),
+                    async: true,
+                    contentType: "application/json",
+                    data: JSON.stringify(customer)
+                }
+                    console.log(ajaxConfig);
+                  $.ajax(ajaxConfig).done(function(response,statusText,jxhr){
+                      console.log(response);
+                    alert("Updated Successfully");
+                    loadAllCustomers();
+                    $('button[type="reset"]').trigger("click");
+                }).fail(function(jxhr,statusText,error){
+                    alert("Unable to update the customer, try again");
+                    console.log(error);
+                });
+
+            }else{
+                if ($("#InputCusID").val() == ""){
+                    alert("plz Enter the ID");
+                    return;
+                };
+                if ($("#InputCusName").val() == ""  ){
+                    alert("plz Enter the Name");
+                    return;
+                }
+                if ($("#InputQuantityOnHand").val() == ""  ){
+                    alert("plz Enter the Address");
+                    return;
+                }
+
+
+                var customer = {
+                    cus_id: $("#InputCusID").val().trim(),
+                    cus_name: $("#InputCusName").val().trim(),
+                    cus_address: $("#InputAddress").val().trim()
+                };
+
+                var ajaxConfig = {
+                    method: "POST",
+                    url:"http://localhost:3000/api/v1/customers/",
+                    async: true,
+                    contentType: "application/json",
+                    data: JSON.stringify(customer)
+                }
+
+                $.ajax(ajaxConfig).done(function(response,statusText,jxhr){
+                    alert("Added Successfully");
+                    loadAllCustomers();
+                    $('button[type="reset"]').trigger("click");
+                }).fail(function(jxhr,statusText,error){
+                    alert("Unable to save the customer, try again");
+                    console.log(error);
+                });
+
+                customercount();
+            }
+
+        });
+
+        $('button[type="reset"]').click(function(){
+            $("#tblCustomers tbody tr").removeClass("selected-row");
+            $("#InputCusID").attr("disabled",false);
+        });
+
+
+
+        $(document).ready(function () {
+            // reset();
+            loadAllCustomers();
+        });
+        function loadAllCustomers() {
+
+            $("#tblCustomers").dataTable().fnDestroy();
+            $("#tblCustomers tbody tr").remove();
+
+           customercount();
+
+            var ajaxConfig = {
+                method: "GET",
+                url: "http://localhost:3000/api/v1/customers",
+                async: true,
+
+            };
+            $.ajax(ajaxConfig).done(function (customers, statusText, jxhr) {
+
+                customers.forEach(function (customer) {
+
+                    var html = `<tr>
+                                <td>${customer.cus_id}</td>
+                                <td>${customer.cus_name}</td>
+                                <td>${customer.cus_address}</td>
+                                <td><button type="button" class="btn btn-danger delete">Delete</button></td>
+                            </tr>`;
+
+                    $("#tblCustomers tbody").append(html);
+
+                    $("#tblCustomers tbody tr").off("click");
+                    $("#tblCustomers tbody tr").click(function () {
+                        $("#tblCustomers tbody tr").removeClass("selected-row");
+                        $(this).addClass("selected-row");
+
+                        $("#InputCusID").val($(this).find("td:first-child").text());
+                        $("#InputCusID").attr("disabled", true);
+                        $("#InputCusName").val($(this).find("td:nth-child(2)").text());
+                        $("#InputAddress").val($(this).find("td:nth-child(3)").text());
+
+                    });
+
+
+                    $("button.delete").off("click");
+                    $("button.delete").click(function (eventData) {
+
+                        eventData.stopPropagation();
+
+                        var row = $(this).parents("tr");
+                        var customerId = (row.find("td:first-child").text());
+
+                        if (confirm("Are you sure to delete this customer?")) {
+
+                            var ajaxConfig = {
+                                method: "DELETE",
+                                url: "http://localhost:3000/api/v1/customers/" + customerId,
+                                async: true
+                            }
+
+                            $.ajax(ajaxConfig).done(function (response, statusText, jxhr) {
+
+                                $(row).remove();
+
+                            }).fail(function (jxhr, statusText, error) {
+
+                                console.log(jxhr.responseText);
+
+
+
+                            });
+
+                        }
+                        customercount();
+                    });
+
+                });
+
+                $('#tblCustomers').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true,
+                    'pageLength': 5,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Search Customers..."
+                    }
+                });
+
+
+            }).fail(function (jxhr, statustext, error) {
+
+            });
+
+
+        }
 
 
 
@@ -341,63 +555,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         });
 
-        $("#Save").click(function () {
+        function customercount() {
+            var ajaxConfig = {
+                method: "HEAD",
+                url: "http://localhost:3000/api/v1/customers",
+                async: true,
+            }
+            $.ajax(ajaxConfig).done(function (responseText, statusText, jxhr) {
+                var customerCount = jxhr.getResponseHeader("X-count");
+                $("#customer-count").text(customerCount);
 
+            }).fail(function (jxhr, statustext, error) {
 
-            var cusId = $("#InputCusID").val().trim();
-            var cusName = $("#InputCusName").val().trim();
-            var cusAddress = $("#InputAddress").val().trim();
-            console.log($("#tblCustomer tbody tr").length);
-
-            var html = `<tr>
-                                <th>${$("#tblCustomer tbody tr").length + 1}</th>
-                                <td >${cusId}</td>
-                                <td >${cusName}</td>
-                                <td>${cusAddress}</td>
-                                <td style="width:60px;padding:0px"><div class="icon-delete"></div></td>
-                                
-                            </tr>`;
-
-            $("#tblCustomer tbody ").append(html);
-            $("#InputCusID").val("");
-            $("#InputCusName").val("");
-            $("#InputAddress").val("");
-
-
-
-            $("#tblCustomer .icon-delete").off("click");
-            $("#tblCustomer .icon-delete").click(function (eventData) {
-                eventData.stopPropagation();
-
-                $(this).fadeOut(500, function () {
-                    $(this).parents("tr").remove();
-
-                });
             });
-
-
-            $("#tblCustomer tbody tr").click(function(){
-        var customerId=$(this).find("td:nth-child(2)").text();
-        var customerName=$(this).find("td:nth-child(3)").text();
-        var customerAddress=$(this).find("td:nth-child(4)").text();
-        //console.log(customerId);
-        $("#InputCusID").val(customerId);
-        $("#InputCusName").val(customerName);
-        $("#InputAddress").val(customerAddress);
-
-        
-
-    });
-        });
-
-
-
-        function reset() {
-            $("#btnSave").attr("disabled", true);
-            $("#InputCusID").attr("disabled", true);
-            $("#InputCusName").attr("disabled", true);
-            $("#InputAddress").attr("disabled", true);
         }
+
 
     </script>
 

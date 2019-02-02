@@ -89,28 +89,34 @@ table tbody tr{
     cursor: pointer;
 }
 
-.icon-delete{
-    width: 48px;
-    height: 48px;
-    background-image: url('../img/recyclebin.png');
-    background-size: contain;
-    background-position: center;
-}
+/*.icon-delete{*/
+    /*width: 48px;*/
+    /*height: 48px;*/
+    /*background-image: url('../img/recyclebin.png');*/
+    /*background-size: contain;*/
+    /*background-position: center;*/
+/*}*/
 
-.icon-delete:hover:not(.icon-disabled){
-    background-image: url('../img/recyclebin-hover.png');
-}
+/*.icon-delete:hover:not(.icon-disabled){*/
+    /*background-image: url('../img/recyclebin-hover.png');*/
+/*}*/
 
-.icon-disabled{
-    filter: grayscale(100%);
-}
+/*.icon-disabled{*/
+    /*filter: grayscale(100%);*/
+/*}*/
 
 .invalid-qty{
     border: 1px solid red !important;
 }
-
-
-
-tbody tr:hover{
-    background-color: silver;
+.dataTables_filter {
+    width: 50%;
+    float: right;
+    text-align: right;
+    margin: 10px;
 }
+
+
+
+/*tbody tr:hover{*/
+    /*background-color: silver;*/
+/*}*/

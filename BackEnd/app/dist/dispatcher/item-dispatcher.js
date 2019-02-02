@@ -63,6 +63,8 @@ itemDispatcher.route("/:code")
 })
     .put(function (req, res) {
     if (!("item_code" in req.body && "description" in req.body && "unitprice" in req.body && "quantity" in req.body)) {
+        console.log("working");
+        console.log(req.body);
         res.status(400).send("Invalid Request Body");
         return;
     }

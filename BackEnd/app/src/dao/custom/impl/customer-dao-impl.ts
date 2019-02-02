@@ -2,6 +2,7 @@ import Promise = require("promise");
 import {Customer} from "../../../entity/customer";
 import {CustomerDAO} from "../customer-dao";
 import {PoolConnection} from "mysql";
+import {Item} from "../../../entity/item";
 
 
 export class CustomerDAOImpl implements CustomerDAO {
@@ -84,7 +85,7 @@ export class CustomerDAOImpl implements CustomerDAO {
     update(entity: Customer): Promise<boolean> {
         return new Promise((resolve, reject) => {
 
-            console.log(`UPDATE customer SET cus_name = '${entity.cus_name}', cus_address ='${entity.cus_address}' WHERE cus_id='${entity.cus_id}'`);
+            // console.log(`UPDATE customer SET cus_name = '${entity.cus_name}', cus_address ='${entity.cus_address}' WHERE cus_id='${entity.cus_id}'`);
             this.connection.query(`UPDATE customer SET cus_name = '${entity.cus_name}', cus_address ='${entity.cus_address}' WHERE cus_id='${entity.cus_id}'`,
                 (err, results) => {
 
@@ -97,6 +98,29 @@ export class CustomerDAOImpl implements CustomerDAO {
                 });
         });
     }
+    // update(entity: Item): Promise<boolean> {
+    //     return new Promise((resolve, reject) => {
+    //console.log(`UPDATE item SET description = '${entity.description}', unitprice ='${entity.unitprice}',quantity='${entity.quantity}' WHERE item_code='${entity.item_code}'`);
+    //         this.connection.query(`UPDATE item SET description = '${entity.description}', unitprice ='${entity.unitprice}',quantity='${entity.quantity}' WHERE item_code='${entity.item_code}'`,
+    //             (err, results) => {
+    //
+    //                 if (err) {
+    //                     reject(err);
+    //                 } else {
+    //                     resolve(results.affectedRows > 0);
+    //                 }
+    //
+    //             });
+    //     });
+    // }
+
+
+
+
+
+
+
+
 
     count(): Promise<number> {
         return new Promise((resolve, reject) => {

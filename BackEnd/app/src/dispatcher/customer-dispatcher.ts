@@ -1,15 +1,12 @@
 import express = require("express");
-import {pool} from "../db/db-pool";
-import {DAOTypes, getDAO} from "../dao/dao-factory";
-import {CustomerDAO} from "../dao/custom/customer-dao";
 import {CustomerBO} from "../business/customer-bo";
-import {error} from "util";
 import cors = require("cors");
 
 
 
 // This will return a new instance of a router object that can be used to handle routing
 const customerDispatcher = express.Router();
+ customerDispatcher.use(cors());
 
 /*
 customerDispatcher.get("", (req, res) => {
@@ -95,18 +92,21 @@ customerDispatcher.route("/:id")
     })
     .put((req, res) => {
 
-        if (!("cus-id" in req.body && "cus_name" in req.body && "cus_address" in req.body)){
+        if (!("cus_id" in req.body && "cus_name" in req.body && "cus_address" in req.body)){
+
             res.status(400).send("Invalid Request Body");
             return;
         }
 
         if (req.body.cus_id !== req.params.id){
+
             res.status(400).send("Mismatched Customer ID");
             return;
         }
 
         const promise = new CustomerBO().updateCustomer(req.body);
         promise.then(status=>{
+
 
             if (status){
                 res.status(200).send(true);
